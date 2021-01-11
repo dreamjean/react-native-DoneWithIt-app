@@ -1,4 +1,5 @@
+import Image from "./Image";
 import SafeAreaView from "./SafeAreaView";
 import Text from "./Text";
 
-export { SafeAreaView, Text };
+export { Image, SafeAreaView, Text };

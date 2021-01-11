@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Avatar } from "../components";
+import { ListItem } from "../components";
 import { Image, SafeAreaView, Text } from "../components/styles";
 import { images } from "../config";
 
-function ListingEditScreen() {
+function ListingDetailsScreen() {
   return (
     <SafeAreaView>
       <Container>
@@ -16,7 +16,7 @@ function ListingEditScreen() {
             $100
           </Text>
         </TextBox>
-        <Avatar avatar={images[0]} name="Rokia" subTitle="5 listings" />
+        <ListItem image={images[0]} title="Rokia" subTitle="5 listings" />
       </Container>
     </SafeAreaView>
   );
@@ -32,4 +32,4 @@ const TextBox = styled.View`
   })}
 `;
 
-export default ListingEditScreen;
+export default ListingDetailsScreen;

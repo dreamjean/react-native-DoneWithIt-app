@@ -1,16 +1,30 @@
 import styled, { css } from "styled-components";
 
-const titleStyle = css`
+const title1Style = css`
   ${({ theme: { fonts, size } }) => ({
-    fontFamily: fonts[0],
-    fontSize: size.title,
+    fontFamily: fonts[1],
+    fontSize: size.title1,
   })}
 `;
 
-const bodyStyle = css`
+const title2Style = css`
+  ${({ theme: { fonts, size } }) => ({
+    fontFamily: fonts[1],
+    fontSize: size.title2,
+  })}
+`;
+
+const body1Style = css`
   ${({ theme: { fonts, size } }) => ({
     fontFamily: fonts[2],
-    fontSize: size.body,
+    fontSize: size.body1,
+  })}
+`;
+
+const body2Style = css`
+  ${({ theme: { fonts, size } }) => ({
+    fontFamily: fonts[2],
+    fontSize: size.body2,
   })}
 `;
 
@@ -32,16 +46,20 @@ const Text = styled.Text`
     marginBottom,
     white,
     secondary,
+    opacity,
     theme: { colors },
   }) => ({
     color: white ? colors.white : secondary ? colors.secondary : colors.dark,
     textAlign: center ? "center" : right ? "right" : "left",
     marginBottom,
     marginTop,
+    opacity,
   })}
 
-  ${({ title }) => title && titleStyle}
-  ${({ body }) => body && bodyStyle}
+  ${({ title1 }) => title1 && title1Style}
+  ${({ title2 }) => title2 && title2Style}
+  ${({ body1 }) => body1 && body1Style}
+  ${({ body2 }) => body2 && body2Style}
   ${({ button }) => button && buttonStyle}
 `;
 

@@ -4,19 +4,21 @@ import styled from "styled-components";
 
 import { Text } from "./styles";
 
-const Button = ({ title, onPress, padding = 15, primary }) => {
+const Button = ({ title, onPress, margin, padding = 15, primary }) => {
   return (
-    <Container {...{ onPress, padding, primary }}>
+    <Container {...{ onPress, margin, padding, primary }}>
       <Text button>{title}</Text>
     </Container>
   );
 };
 
 const Container = styled(RectButton)`
-  ${({ padding, primary, theme: { colors, radii } }) => ({
+  width: 100%;
+  ${({ padding, margin, primary, theme: { colors, radii } }) => ({
     backgroundColor: primary ? colors.primary : colors.secondary,
-    borderRadius: radii.m,
+    borderRadius: radii.l,
     padding,
+    margin,
   })}
 `;
 
