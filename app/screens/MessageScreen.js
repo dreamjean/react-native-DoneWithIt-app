@@ -1,11 +1,12 @@
-import React from "react";
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-import { ListItem } from "../components";
-import { SafeAreaView } from "../components/styles";
+import { SwipeableRow } from "../components";
+import { View } from "../components/styles";
 import { images } from "../config";
 
-const messages = [
+const initialMessages = [
   {
     id: 1,
     title: "T1",
@@ -21,36 +22,60 @@ const messages = [
 ];
 
 function MessageScreen() {
+  const [messages, setMessages] = useState(initialMessages);
+  const [refreshing, setReshing] = useState(false);
+
+  const handleUpdate = (item) => {
+    const newMessages = messages.filter((m) => m.id !== item.id);
+    setMessages([item, ...newMessages]);
+  };
+
   return (
-    <SafeAreaView>
+    <Container>
       <Listing
         data={messages}
-        keyExtra={(message) => message.id.toString()}
+        keyExtractor={(message) => message.id.toString()}
         renderItem={({ item }) => (
-          <ListItem
+          <SwipeableRow
             image={item.image}
             title={item.title}
             subTitle={item.description}
             onPress={() => console.log(item)}
+            onDelete={() =>
+              setMessages(messages.filter((m) => m.id !== item.id))
+            }
+            onUpdate={() => handleUpdate(item)}
           />
         )}
-        ItemSeparatorComponent={() => <Separator />}
+        ItemSeparatorComponent={() => <View separator width="78%" />}
+        refreshing={refreshing}
+        onRefresh={() => {
+          setReshing(true);
+          setMessages([
+            {
+              id: 2,
+              title: "T2",
+              description: "D2",
+              image: images[0],
+            },
+          ]);
+          setReshing(false);
+        }}
       />
-    </SafeAreaView>
+      <StatusBar style="dark" />
+    </Container>
   );
 }
 
-const Listing = styled.FlatList`
+const Container = styled.View`
   flex: 1;
 `;
 
-const Separator = styled.View`
-  width: 78%;
-  height: 1px;
-  align-self: flex-end;
-  ${({ theme: { colors, space } }) => ({
-    backgroundColor: colors.light,
-    marginHorizontal: space.s,
+const Listing = styled.FlatList`
+  flex: 1;
+
+  ${({ theme: { colors } }) => ({
+    backgroundColor: colors.white,
   })}
 `;
 

@@ -5,11 +5,18 @@ import colors from "./colors";
 
 export const isIos = Platform.OS === "ios";
 
+const getFont = (n) => (isIos ? fonts.ios[n] : fonts.android[n]);
+
+const fonts = {
+  ios: ["Proxima-Nova-Bold", "Proxima-Nova-Sbold", "Proxima-Nova-Reg"],
+  android: ["Montserrat-Bold", "Montserrat-SemiBold", "Montserrat-Regular"],
+};
+
 export default {
   colors,
   calender,
-  fonts: ["Gotham-Black", "Gotham-Bold", "Gotham-Medium"],
   size: {
+    s: 12,
     button: 15,
     body1: 16,
     body2: 17,
@@ -22,6 +29,7 @@ export default {
     m: 15,
     m2: 20,
     l: 24,
+    l2: 30,
     xl: 40,
     xxl: 80,
   },
@@ -31,4 +39,5 @@ export default {
     l: 25,
   },
   isIos,
+  getFont,
 };

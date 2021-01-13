@@ -6,6 +6,11 @@ export default {
   medium: "#6e6969",
   light: "#f8f4f4",
   lightCyan: "#ebf9f8",
+  lightCyan2: "#afe9e5",
+  lightDanger: "#ffe6e6",
   dark: "#262626",
   danger: "#ff5252",
+  yellow: "#ffe66d",
+  grey: "#c1bebe",
+  mediumLight: "rgba(0, 0, 0, 0.5)",
 };

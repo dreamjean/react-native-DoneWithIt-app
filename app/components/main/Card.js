@@ -10,7 +10,7 @@ const Card = ({ image, title, subTitle }) => {
       <TextBox>
         <Text body2>{title}</Text>
         <Text title1 secondary marginTop={6}>
-          ${subTitle}
+          {subTitle}
         </Text>
       </TextBox>
     </Container>
@@ -23,7 +23,7 @@ const Container = styled.View`
   ${({ theme: { colors, space, radii } }) => ({
     backgroundColor: colors.white,
     borderRadius: radii.m,
-    marginBottom: space.m2,
+    marginTop: space.m,
   })}
 `;
 

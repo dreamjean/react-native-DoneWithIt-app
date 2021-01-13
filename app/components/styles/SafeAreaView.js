@@ -5,7 +5,7 @@ const SafeAreaView = styled.SafeAreaView`
   ${({ theme: { colors } }) => ({
     flex: 1,
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: colors.white,
+    backgroundColor: colors.light,
   })}
 `;
 

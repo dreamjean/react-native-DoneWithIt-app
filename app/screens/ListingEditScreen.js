@@ -1,35 +1,54 @@
 import React from "react";
-import styled from "styled-components";
+import * as Yup from "yup";
 
-import { Avatar } from "../components";
-import { Image, SafeAreaView, Text } from "../components/styles";
-import { images } from "../config";
+import { Form, FormField, FormPicker, SubmitButton } from "../components/forms";
+import { View } from "../components/styles";
+
+const validationSchema = Yup.object().shape({
+  title: Yup.string().required().min(1).label("Title"),
+  price: Yup.number().required().min(1).max(10000).label("Price"),
+  description: Yup.string().label("Description"),
+  category: Yup.object().required().nullable().label("Category"),
+});
+
+const categories = [
+  { label: "Furniture", value: 1 },
+  { label: "Clothing", value: 2 },
+  { label: "Cameras", value: 3 },
+];
 
 function ListingEditScreen() {
   return (
-    <SafeAreaView>
-      <Container>
-        <Image ditails source={images[4]} />
-        <TextBox>
-          <Text title1>red jacket for sell</Text>
-          <Text body2 secondary marginTop={6}>
-            $100
-          </Text>
-        </TextBox>
-        <Avatar avatar={images[0]} name="Rokia" subTitle="5 listings" />
-      </Container>
-    </SafeAreaView>
+    <View container>
+      <Form
+        initialValues={{
+          title: "",
+          price: "",
+          description: "",
+          category: null,
+        }}
+        onSubmit={(values) => console.log(values)}
+        validationSchema={validationSchema}
+      >
+        <FormField maxLength={255} name="title" placeholder="Title" />
+        <FormField
+          keyboardType="numeric"
+          maxLength={8}
+          name="price"
+          placeholder="Price"
+        />
+        <FormPicker items={categories} name="category" placeholder="Category" />
+        <FormField
+          maxLength={255}
+          multiline
+          name="description"
+          numberOfLine={3}
+          placeholder="Description"
+        />
+        <SubmitButton title="Post" />
+      </Form>
+    </View>
   );
 }
-
-const Container = styled.View`
-  flex: 1;
-`;
-
-const TextBox = styled.View`
-  ${({ theme: { space } }) => ({
-    padding: space.m,
-  })}
-`;
 
 export default ListingEditScreen;

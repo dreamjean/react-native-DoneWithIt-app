@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { colors } from "../../config";
 import { Image, Text } from "../styles";
 
-const ListItem = ({ image, title, subTitle, onPress }) => {
+const ListItem = ({ IconComponent, image, title, subTitle, onPress }) => {
   return (
     <Pressable
       {...{ onPress }}
@@ -14,21 +14,24 @@ const ListItem = ({ image, title, subTitle, onPress }) => {
         background: pressed ? colors.lightCyan : "transparent",
       })}
     >
-      <Container>
+      <Wrapper>
+        {IconComponent}
         {image && <Image avatar source={image} />}
 
         <TextBox>
           <Text body2>{title}</Text>
-          <Text body1 opacity={0.35} marginTop={4} numberOfLines={1}>
-            {subTitle}
-          </Text>
+          {subTitle && (
+            <Text body1 opacity={0.35} marginTop={4} numberOfLines={1}>
+              {subTitle}
+            </Text>
+          )}
         </TextBox>
-      </Container>
+      </Wrapper>
     </Pressable>
   );
 };
 
-const Container = styled.View`
+const Wrapper = styled.View`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;

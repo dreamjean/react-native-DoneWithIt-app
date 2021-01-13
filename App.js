@@ -4,7 +4,7 @@ import React from "react";
 
 import { Theme } from "./app/components";
 import useLoadAssets from "./app/hooks/useLoadAssets";
-import AuthNavigator from "./app/navigation/AuthNavigator";
+import { AppNavigator, navigationTheme } from "./app/navigation";
 
 const App = () => {
   const { assetsLoaded, setAssetsLoaded, loadAssetsAsync } = useLoadAssets();
@@ -21,8 +21,9 @@ const App = () => {
 
   return (
     <Theme>
-      <NavigationContainer>
-        <AuthNavigator />
+      <NavigationContainer theme={navigationTheme}>
+        {/* <AuthNavigator /> */}
+        <AppNavigator />
       </NavigationContainer>
     </Theme>
   );
