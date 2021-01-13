@@ -3,18 +3,21 @@ import React, { useState } from "react";
 import { Modal, Pressable } from "react-native";
 import styled from "styled-components";
 
-import { colors } from "../config";
+import { calender, colors } from "../config";
 import PickerItem from "./PickerItem";
 import Text from "./styles/Text";
 
 const Picker = ({
   error,
-  touched,
   icon,
-  placeholder,
   items,
-  selectedItem,
+  numberOfColumns = 1,
   onSelectItem,
+  placeholder,
+  PickerItemComponent = PickerItem,
+  selectedItem,
+  touched,
+  width = "100%",
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -24,7 +27,7 @@ const Picker = ({
   return (
     <>
       <Pressable onPress={() => setModalVisible(true)}>
-        <Wrapper {...{ touched, error }}>
+        <Wrapper {...{ touched, error, width }}>
           {icon && (
             <MaterialCommunityIcons name={icon} color={reColor} size={26} />
           )}
@@ -69,8 +72,8 @@ const Picker = ({
               data={items}
               keyExtractor={(item) => item.value.toString()}
               renderItem={({ item }) => (
-                <PickerItem
-                  label={item.label}
+                <PickerItemComponent
+                  item={item}
                   onPress={() => {
                     setModalVisible(false);
                     onSelectItem(item);
@@ -78,6 +81,7 @@ const Picker = ({
                   selected={item === selectedItem}
                 />
               )}
+              numColumns={numberOfColumns}
             />
           </Container>
         </ModalBox>
@@ -89,9 +93,8 @@ const Picker = ({
 const Wrapper = styled.View`
   flex-direction: row;
   align-items: center;
-  width: 100%;
 
-  ${({ touched, error, theme: { colors, radii, space } }) => ({
+  ${({ width, touched, error, theme: { colors, radii, space } }) => ({
     backgroundColor: !touched
       ? colors.light
       : error
@@ -99,7 +102,8 @@ const Wrapper = styled.View`
       : colors.lightCyan,
     borderRadius: radii.l,
     padding: space.m,
-    marginVertical: space.s2,
+    marginVertical: space.s3,
+    width,
   })}
 `;
 
@@ -108,7 +112,7 @@ const Category = styled(Text)`
 
   ${({ color, theme: { space } }) => ({
     color,
-    marginLeft: space.s2,
+    marginLeft: space.s3,
   })}
 `;
 
@@ -123,7 +127,7 @@ const ModalBox = styled.View`
 `;
 
 const Container = styled.View`
-  height: 200px;
+  height: ${calender.height / 2}px;
   width: 100%;
 
   ${({ theme: { colors } }) => ({
@@ -142,7 +146,7 @@ const Header = styled.View`
 
   ${({ theme: { colors, space } }) => ({
     backgroundColor: colors.lightCyan,
-    padding: space.s,
+    padding: space.s2,
   })}
 `;
 

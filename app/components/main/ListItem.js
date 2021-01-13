@@ -19,7 +19,9 @@ const ListItem = ({ IconComponent, image, title, subTitle, onPress }) => {
         {image && <Image avatar source={image} />}
 
         <TextBox>
-          <Text body2>{title}</Text>
+          <Text body2 numberOfLines={1}>
+            {title}
+          </Text>
           {subTitle && (
             <Text body1 opacity={0.35} marginTop={4} numberOfLines={1}>
               {subTitle}
@@ -38,7 +40,7 @@ const Wrapper = styled.View`
 
   ${({ theme: { colors, space } }) => ({
     backgroundColor: colors.white,
-    paddingVertical: space.s2,
+    paddingVertical: space.s3,
     paddingLeft: space.m,
   })}
 `;
@@ -47,7 +49,7 @@ const TextBox = styled.View`
   justify-content: center;
 
   ${({ theme: { space } }) => ({
-    marginLeft: space.s2,
+    marginLeft: space.s3,
   })}
 `;
 

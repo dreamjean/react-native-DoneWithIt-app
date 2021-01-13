@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 
 const containerStyle = css`
   flex: 1;
-  align-items: center;
 
   ${({ theme: { colors, space } }) => ({
     backgroundColor: colors.white,

@@ -4,12 +4,12 @@ import styled from "styled-components";
 
 import { colors } from "../config";
 
-const TextInput = ({ touched, error, icon, ...rest }) => {
+const TextInput = ({ touched, error, icon, width = "100%", ...rest }) => {
   const dangerPrimery = error ? colors.danger : colors.secondary;
   const reColor = !touched ? colors.grey : dangerPrimery;
 
   return (
-    <Wrapper {...{ error, touched }}>
+    <Wrapper {...{ error, touched, width }}>
       {icon && <MaterialIcons name={icon} color={reColor} size={24} />}
       <Input
         {...rest}
@@ -25,7 +25,7 @@ const Wrapper = styled.View`
   flex-direction: row;
   justify-content: center;
 
-  ${({ touched, error, theme: { colors, radii, space } }) => ({
+  ${({ width, touched, error, theme: { colors, radii, space } }) => ({
     backgroundColor: !touched
       ? colors.light
       : error
@@ -33,7 +33,8 @@ const Wrapper = styled.View`
       : colors.lightCyan,
     borderRadius: radii.l,
     padding: space.m,
-    marginVertical: space.s2,
+    marginVertical: space.s3,
+    width,
   })}
 `;
 

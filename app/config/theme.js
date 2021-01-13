@@ -24,8 +24,9 @@ export default {
     title2: 22,
   },
   space: {
-    s: 8,
-    s2: 12,
+    s1: 4,
+    s2: 8,
+    s3: 12,
     m: 15,
     m2: 20,
     l: 24,

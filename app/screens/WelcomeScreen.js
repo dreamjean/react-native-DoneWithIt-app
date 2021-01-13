@@ -12,13 +12,12 @@ const WelcomeScreen = ({ navigation }) => {
       <Text title2>{`Sell What You Don't Need`}</Text>
       <Wrapper>
         <Button
-          margin={10}
           primary
           title="Login"
           onPress={() => navigation.navigate("Login")}
         />
         <Button
-          margin={10}
+          marginVertical={10}
           title="Register"
           onPress={() => navigation.navigate("Register")}
         />

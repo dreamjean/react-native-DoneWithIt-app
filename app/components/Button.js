@@ -4,9 +4,9 @@ import styled from "styled-components";
 
 import { Text } from "./styles";
 
-const Button = ({ title, onPress, margin, padding = 15, primary }) => {
+const Button = ({ title, onPress, marginVertical, padding = 15, primary }) => {
   return (
-    <Container {...{ onPress, margin, padding, primary }}>
+    <Container {...{ onPress, marginVertical, padding, primary }}>
       <Text button>{title}</Text>
     </Container>
   );
@@ -14,11 +14,11 @@ const Button = ({ title, onPress, margin, padding = 15, primary }) => {
 
 const Container = styled(RectButton)`
   width: 100%;
-  ${({ padding, margin, primary, theme: { colors, radii } }) => ({
+  ${({ padding, marginVertical, primary, theme: { colors, radii } }) => ({
     backgroundColor: primary ? colors.primary : colors.secondary,
     borderRadius: radii.l,
     padding,
-    margin,
+    marginVertical,
   })}
 `;
 

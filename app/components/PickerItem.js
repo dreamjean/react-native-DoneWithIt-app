@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Text from "./styles/Text";
 
-const PickerItem = ({ label, onPress, selected }) => {
+const PickerItem = ({ item, onPress, selected }) => {
   return (
     <Pressable
       style={({ pressed }) => ({
@@ -13,7 +13,7 @@ const PickerItem = ({ label, onPress, selected }) => {
       {...{ onPress }}
     >
       <Label body1 {...{ selected }}>
-        {label}
+        {item.label}
       </Label>
     </Pressable>
   );
