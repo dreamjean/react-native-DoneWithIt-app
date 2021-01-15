@@ -29,6 +29,11 @@ const cardStyle = css`
   height: 200px;
 `;
 
+const mediaStyle = css`
+  width: 100px;
+  height: 100px;
+`;
+
 const ditailsStyle = css`
   width: 100%;
   height: 300px;
@@ -40,6 +45,7 @@ const Image = styled.Image`
   ${({ logo }) => logo && logoStyle}
   ${({ card }) => card && cardStyle}
   ${({ ditails }) => ditails && ditailsStyle}
+  ${({ media }) => media && mediaStyle}
 `;
 
 export default Image;

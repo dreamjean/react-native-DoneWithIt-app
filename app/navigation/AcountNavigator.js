@@ -12,7 +12,11 @@ const AcountNavigator = () => (
       component={ProfileScreen}
       options={{ headerShown: false }}
     />
-    <Stack.Screen name="Message" component={MessageScreen} />
+    <Stack.Screen
+      name="Message"
+      component={MessageScreen}
+      options={{ headerTitleAlign: "center" }}
+    />
   </Stack.Navigator>
 );
 

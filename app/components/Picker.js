@@ -101,7 +101,8 @@ const Wrapper = styled.View`
       ? colors.lightDanger
       : colors.lightCyan,
     borderRadius: radii.l,
-    padding: space.m,
+    paddingVertical: space.s3,
+    paddingHorizontal: space.m,
     marginVertical: space.s3,
     width,
   })}
@@ -112,7 +113,7 @@ const Category = styled(Text)`
 
   ${({ color, theme: { space } }) => ({
     color,
-    marginLeft: space.s3,
+    marginLeft: space.s2,
   })}
 `;
 

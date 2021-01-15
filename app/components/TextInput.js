@@ -32,7 +32,8 @@ const Wrapper = styled.View`
       ? colors.lightDanger
       : colors.lightCyan,
     borderRadius: radii.l,
-    padding: space.m,
+    paddingVertical: space.s3,
+    paddingHorizontal: space.m,
     marginVertical: space.s3,
     width,
   })}
@@ -45,7 +46,7 @@ const Input = styled.TextInput`
     color: colors.medium,
     fontSize: size.body2,
     fontFamily: getFont(2),
-    marginLeft: space.s,
+    marginLeft: space.s2,
   })}
 `;
 

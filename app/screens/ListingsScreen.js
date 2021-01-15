@@ -21,7 +21,7 @@ const listings = [
   },
 ];
 
-function ListingsScreen() {
+const ListingsScreen = () => {
   return (
     <Container>
       <FlatList
@@ -39,7 +39,7 @@ function ListingsScreen() {
       <StatusBar style="dark" />
     </Container>
   );
-}
+};
 
 const Container = styled(SafeAreaView)`
   ${({ theme: { space } }) => ({

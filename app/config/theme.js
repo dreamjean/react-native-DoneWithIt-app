@@ -38,6 +38,7 @@ export default {
     s: 4,
     m: 15,
     l: 25,
+    xl: 35,
   },
   isIos,
   getFont,

@@ -5,7 +5,7 @@ import { ListItem } from "../components";
 import { Image, SafeAreaView, Text } from "../components/styles";
 import { images } from "../config";
 
-function ListingDetailsScreen() {
+const ListingDetailsScreen = () => {
   return (
     <SafeAreaView>
       <Container>
@@ -20,7 +20,7 @@ function ListingDetailsScreen() {
       </Container>
     </SafeAreaView>
   );
-}
+};
 
 const Container = styled.View`
   flex: 1;

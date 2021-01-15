@@ -21,7 +21,7 @@ const initialMessages = [
   },
 ];
 
-function MessageScreen() {
+const MessageScreen = () => {
   const [messages, setMessages] = useState(initialMessages);
   const [refreshing, setReshing] = useState(false);
 
@@ -65,7 +65,7 @@ function MessageScreen() {
       <StatusBar style="dark" />
     </Container>
   );
-}
+};
 
 const Container = styled.View`
   flex: 1;
