@@ -2,8 +2,13 @@ import React from "react";
 import * as Yup from "yup";
 
 import { CategoryPickerItem } from "../components";
-import { Form, FormField, FormPicker, SubmitButton } from "../components/forms";
-import ImageInput from "../components/ImageInput";
+import {
+  Form,
+  FormField,
+  FormImagePicker,
+  FormPicker,
+  SubmitButton,
+} from "../components/forms";
 import { View } from "../components/styles";
 import categories from "../data/categories";
 
@@ -12,9 +17,13 @@ const validationSchema = Yup.object().shape({
   price: Yup.number().required().min(1).max(10000).label("Price"),
   description: Yup.string().label("Description"),
   category: Yup.object().required().nullable().label("Category"),
+  images: Yup.array().min(1, "Please select at least on image."),
 });
 
-const ListingEditScreen = ({ navigation }) => {
+const ListingEditScreen = ({ route }) => {
+  const data = route?.params?.data;
+  const inititalImages = data ? data : [];
+
   return (
     <View container>
       <Form
@@ -23,11 +32,12 @@ const ListingEditScreen = ({ navigation }) => {
           price: "",
           description: "",
           category: null,
+          images: inititalImages,
         }}
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        <ImageInput onPress={() => navigation.navigate("Media Selection")} />
+        <FormImagePicker name="images" data={data} />
         <FormField maxLength={255} name="title" placeholder="Title" />
         <FormField
           keyboardType="numeric"

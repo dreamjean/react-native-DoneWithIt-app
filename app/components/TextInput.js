@@ -13,7 +13,7 @@ const TextInput = ({ touched, error, icon, width = "100%", ...rest }) => {
       {icon && <MaterialIcons name={icon} color={reColor} size={24} />}
       <Input
         {...rest}
-        placeholderTextColor={reColor}
+        placeholderTextColor={colors.grey}
         selectionColor={error ? colors.danger : colors.secondary}
         underlineColorAndroid="transparent"
       />

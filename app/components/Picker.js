@@ -36,7 +36,7 @@ const Picker = ({
               {selectedItem.label}
             </Category>
           ) : (
-            <Category body1 color={!touched ? colors.grey : colors.danger}>
+            <Category body1 color={colors.grey}>
               {placeholder}
             </Category>
           )}

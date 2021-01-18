@@ -9,14 +9,14 @@ const { colors, getFont, size, radii } = theme;
 
 const MediaSelectionScreen = ({ navigation }) => {
   const onDone = (data) => {
-    console.log("our Picked assets data =>", data);
+    navigation.navigate("Listing Edit", { data });
   };
 
   return (
     <Container>
       <AssetsSelector
         options={{
-          assetsType: ["photo", "video"],
+          assetsType: ["photo"],
           maxSelections: 5,
           margin: 3,
           portraitCols: 4,
