@@ -1,19 +1,27 @@
 import React from "react";
+import { Pressable } from "react-native";
 import styled from "styled-components";
 
 import { Image, Text } from "../styles";
 
-const Card = ({ image, title, subTitle }) => {
+const Card = ({ image, title, subTitle, onPress }) => {
   return (
-    <Container>
-      <Image card source={image} />
-      <TextBox>
-        <Text body2>{title}</Text>
-        <Text title1 secondary marginTop={6}>
-          {subTitle}
-        </Text>
-      </TextBox>
-    </Container>
+    <Pressable
+      style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
+      {...{ onPress }}
+    >
+      <Container>
+        <Image card source={{ uri: image }} />
+        <TextBox>
+          <Text body2 numberOfLnes={1}>
+            {title}
+          </Text>
+          <Text title1 secondary marginTop={6} numberOfLnes={2}>
+            {subTitle}
+          </Text>
+        </TextBox>
+      </Container>
+    </Pressable>
   );
 };
 

@@ -1,51 +1,53 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { Card } from "../components";
-import { SafeAreaView } from "../components/styles";
-import { images } from "../config";
+import listingsApi from "../api/listings";
+import { Button, Card } from "../components";
+import { Text, View } from "../components/styles";
+import routes from "../navigation/routes";
 
-const listings = [
-  {
-    id: 1,
-    title: "Red jacket for sale",
-    price: 100,
-    image: images[4],
-  },
-  {
-    id: 2,
-    title: "Couch in great condition",
-    price: 1000,
-    image: images[3],
-  },
-];
+const ListingsScreen = ({ navigation }) => {
+  const [listings, setListings] = useState([]);
+  const [error, setError] = useState(false);
 
-const ListingsScreen = () => {
+  useEffect(() => {
+    loadingListings();
+  }, []);
+
+  const loadingListings = async () => {
+    const response = await listingsApi.getListings();
+    if (!response.ok) return setError(true);
+
+    setError(true);
+    setListings(response.data);
+  };
+
   return (
-    <Container>
+    <View container light>
+      {error && (
+        <>
+          <Text body1 marginTop={10}>{`Couldn't retrieve the listings.`}</Text>
+          <Button title="Retry" onPress={loadingListings} />
+        </>
+      )}
       <FlatList
         data={listings}
-        keyExtractor={(listing) => listing.id.toString()}
+        keyExtractor={(listing) => listing?.id.toString()}
         renderItem={({ item }) => (
           <Card
             title={item.title}
             subTitle={"$" + item.price}
-            image={item.image}
+            image={item.images[0].url}
+            onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
+            showsVerticalScrollIndicator={false}
           />
         )}
       />
-
       <StatusBar style="dark" />
-    </Container>
+    </View>
   );
 };
-
-const Container = styled(SafeAreaView)`
-  ${({ theme: { space } }) => ({
-    paddingHorizontal: space.m,
-  })}
-`;
 
 const FlatList = styled.FlatList``;
 

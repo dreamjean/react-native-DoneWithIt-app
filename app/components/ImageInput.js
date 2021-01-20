@@ -5,6 +5,7 @@ import { Pressable } from "react-native";
 import styled from "styled-components";
 
 import { colors } from "../config";
+import routes from "../navigation/routes";
 import Image from "./styles/Image";
 
 const ImageInput = ({ error, imageUri, onRemoveImage }) => {
@@ -42,7 +43,7 @@ const ImageInput = ({ error, imageUri, onRemoveImage }) => {
             alignItems: "center",
             justifyContent: "center",
           })}
-          onPress={() => navigation.navigate("Media Selection")}
+          onPress={() => navigation.navigate(routes.MEDIA_SELECTION)}
         >
           <MaterialCommunityIcons
             name="camera-plus"

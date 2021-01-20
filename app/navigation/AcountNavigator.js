@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 
-import { MessageScreen, ProfileScreen } from "../screens";
+import { ListingsScreen, MessagesScreen, ProfileScreen } from "../screens";
 
 const Stack = createStackNavigator();
 
@@ -10,11 +10,19 @@ const AcountNavigator = () => (
     <Stack.Screen
       name="Profile"
       component={ProfileScreen}
-      options={{ headerShown: false }}
+      options={{
+        headerShown: false,
+        headerTitle: "Back",
+      }}
     />
     <Stack.Screen
-      name="Message"
-      component={MessageScreen}
+      name="Messages"
+      component={MessagesScreen}
+      options={{ headerTitleAlign: "center" }}
+    />
+    <Stack.Screen
+      name="Listings"
+      component={ListingsScreen}
       options={{ headerTitleAlign: "center" }}
     />
   </Stack.Navigator>

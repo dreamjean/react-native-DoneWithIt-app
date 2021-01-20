@@ -1,29 +1,52 @@
+import { Ionicons } from "@expo/vector-icons";
 import React from "react";
+import { Pressable } from "react-native";
 import styled from "styled-components";
 
 import { ListItem } from "../components";
-import { Image, SafeAreaView, Text } from "../components/styles";
-import { images } from "../config";
+import { Image, Text } from "../components/styles";
+import { colors, images } from "../config";
 
-const ListingDetailsScreen = () => {
+const ListingDetailsScreen = ({ navigation, route }) => {
   return (
-    <SafeAreaView>
-      <Container>
-        <Image ditails source={images[4]} />
+    <Container>
+      <Wrapper>
+        <Image ditails source={{ uri: route?.params?.images[0].url }} />
+        <Pressable
+          style={({ pressed }) => ({
+            position: "absolute",
+            top: 26,
+            left: 18,
+            opacity: pressed ? 0.5 : 1,
+          })}
+          onPress={() => navigation.goBack()}
+        >
+          <Ionicons
+            name="arrow-back-circle-outline"
+            size={40}
+            color={colors.grey}
+          />
+        </Pressable>
         <TextBox>
-          <Text title1>red jacket for sell</Text>
+          <Text title1>{route?.params?.title}</Text>
           <Text body2 secondary marginTop={6}>
-            $100
+            ${route?.params?.price}
           </Text>
         </TextBox>
         <ListItem image={images[0]} title="Rokia" subTitle="5 listings" />
-      </Container>
-    </SafeAreaView>
+      </Wrapper>
+    </Container>
   );
 };
 
 const Container = styled.View`
   flex: 1;
+`;
+
+const Wrapper = styled.View`
+  ${({ theme: { colors } }) => ({
+    backgroundColor: colors.white,
+  })}
 `;
 
 const TextBox = styled.View`

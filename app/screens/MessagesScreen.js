@@ -21,7 +21,7 @@ const initialMessages = [
   },
 ];
 
-const MessageScreen = () => {
+const MessagesScreen = () => {
   const [messages, setMessages] = useState(initialMessages);
   const [refreshing, setReshing] = useState(false);
 
@@ -47,7 +47,7 @@ const MessageScreen = () => {
             onUpdate={() => handleUpdate(item)}
           />
         )}
-        ItemSeparatorComponent={() => <View separator width="78%" />}
+        ItemSeparatorComponent={() => <View separator width="82%" />}
         refreshing={refreshing}
         onRefresh={() => {
           setReshing(true);
@@ -79,4 +79,4 @@ const Listing = styled.FlatList`
   })}
 `;
 
-export default MessageScreen;
+export default MessagesScreen;

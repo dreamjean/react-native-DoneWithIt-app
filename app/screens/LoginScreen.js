@@ -5,6 +5,7 @@ import { LinkButton } from "../components";
 import { Form, FormField, SubmitButton } from "../components/forms";
 import { Image, View } from "../components/styles";
 import { images } from "../config";
+import routes from "../navigation/routes";
 
 let validationSchema = Yup.object().shape({
   email: Yup.string().required().email("Invalid Email").label("Email"),
@@ -63,7 +64,7 @@ const LoginScreen = ({ navigation }) => {
       <LinkButton
         title="Don't have an account?"
         label="Register Here"
-        onPress={() => navigation.navigate("Register")}
+        onPress={() => navigation.navigate(routes.REGISTER)}
       />
     </View>
   );

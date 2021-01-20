@@ -3,11 +3,11 @@ import { DefaultTheme } from "@react-navigation/native";
 import { colors } from "../config";
 
 const navigationTheme = {
-  ...DefaultTheme,
+  ...DefaultTheme.colors,
   colors: {
     ...DefaultTheme.colors,
     primary: colors.primary,
-    background: colors.light,
+    background: colors.white,
   },
 };
 

@@ -37,8 +37,9 @@ export default {
   radii: {
     s: 4,
     m: 15,
+    m2: 22,
     l: 25,
-    xl: 35,
+    xl: 32,
   },
   isIos,
   getFont,

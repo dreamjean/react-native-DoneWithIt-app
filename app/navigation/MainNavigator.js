@@ -5,7 +5,7 @@ import React from "react";
 import { theme } from "../config";
 import { ListingsScreen } from "../screens";
 import AcountNavigator from "./AcountNavigator";
-import FeedNavigator from "./FeedNavigator";
+import FormNavigator from "./FormNavigator";
 import NewButton from "./NewButton";
 
 const { size, getFont } = theme;
@@ -39,11 +39,11 @@ const MainNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="Feed"
-      component={FeedNavigator}
+      name="Form"
+      component={FormNavigator}
       options={({ navigation }) => ({
         tabBarButton: () => (
-          <NewButton onPress={() => navigation.navigate("Feed")} />
+          <NewButton onPress={() => navigation.navigate("Form")} />
         ),
       })}
     />

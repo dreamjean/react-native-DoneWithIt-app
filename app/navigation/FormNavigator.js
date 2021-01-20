@@ -8,9 +8,9 @@ import { ListingEditScreen, MediaSelectionScreen } from "../screens";
 
 const Stack = createStackNavigator();
 
-const AcountNavigator = () => (
+const FormNavigator = () => (
   <Stack.Navigator
-    initialRouteName="Listing Edit"
+    initialRouteName="ListingEdit"
     mode="modal"
     screenOptions={({ route, navigation }) => ({
       headerShown: false,
@@ -24,9 +24,9 @@ const AcountNavigator = () => (
       ...TransitionPresets.ModalPresentationIOS,
     })}
   >
-    <Stack.Screen name="Listing Edit" component={ListingEditScreen} />
-    <Stack.Screen name="Media Selection" component={MediaSelectionScreen} />
+    <Stack.Screen name="ListingEdit" component={ListingEditScreen} />
+    <Stack.Screen name="MediaSelection" component={MediaSelectionScreen} />
   </Stack.Navigator>
 );
 
-export default AcountNavigator;
+export default FormNavigator;

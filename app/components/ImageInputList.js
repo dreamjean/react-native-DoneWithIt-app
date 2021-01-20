@@ -12,6 +12,7 @@ const ImageInputList = ({ error, images = [], onRemoveImage }) => {
         horizontal
         ref={scrollView}
         onContentSizeChange={() => scrollView.current.scrollToEnd()}
+        showsHorizontalScrollIndicator={false}
       >
         {images.map(({ uri, id }) => (
           <ImageInput

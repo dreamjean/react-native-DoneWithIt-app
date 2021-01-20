@@ -5,19 +5,24 @@ import styled from "styled-components";
 import { Icon, ListItem } from "../components";
 import { Image, View } from "../components/styles";
 import { colors, images } from "../config";
+import routes from "../navigation/routes";
 
 const menuItems = [
   {
     title: "My Listings",
-    icon: "format-list-bulleted",
-    backgroundColor: colors.primary,
-    screen: "Listing",
+    icon: {
+      name: "format-list-bulleted",
+      backgroundColor: colors.primary,
+    },
+    targetScreen: "MyListings",
   },
   {
     title: "My Messages",
-    icon: "email",
-    backgroundColor: colors.secondary,
-    screen: "Message",
+    icon: {
+      name: "email",
+      backgroundColor: colors.secondary,
+    },
+    targetScreen: routes.MESSAGES,
   },
 ];
 
@@ -38,13 +43,16 @@ const ProfileScreen = ({ navigation }) => {
           renderItem={({ item }) => (
             <ListItem
               IconComponent={
-                <Icon iconName={item.icon} bgColor={item.backgroundColor} />
+                <Icon
+                  iconName={item.icon.name}
+                  bgColor={item.icon.backgroundColor}
+                />
               }
               title={item.title}
-              onPress={() => navigation.navigate(item.screen, item)}
+              onPress={() => navigation.navigate(item.targetScreen, item)}
             />
           )}
-          ItemSeparatorComponent={() => <View separator width="82%" />}
+          ItemSeparatorComponent={() => <View separator width="85%" />}
         />
       </Wrapper>
       <ListItem

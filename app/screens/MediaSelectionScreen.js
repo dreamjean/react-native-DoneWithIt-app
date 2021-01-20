@@ -4,12 +4,13 @@ import React from "react";
 import styled from "styled-components";
 
 import { theme } from "../config";
+import routes from "../navigation/routes";
 
 const { colors, getFont, size, radii } = theme;
 
 const MediaSelectionScreen = ({ navigation }) => {
   const onDone = (data) => {
-    navigation.navigate("Listing Edit", { data });
+    navigation.navigate(routes.LISTING_EDIT, { data });
   };
 
   return (

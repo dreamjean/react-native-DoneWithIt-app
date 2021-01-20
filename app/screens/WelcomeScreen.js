@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Button } from "../components";
 import { Image, Text } from "../components/styles";
 import { images } from "../config";
+import routes from "../navigation/routes";
 
 const WelcomeScreen = ({ navigation }) => {
   return (
@@ -14,12 +15,12 @@ const WelcomeScreen = ({ navigation }) => {
         <Button
           primary
           title="Login"
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => navigation.navigate(routes.LOGIN)}
         />
         <Button
           marginVertical={10}
           title="Register"
-          onPress={() => navigation.navigate("Register")}
+          onPress={() => navigation.navigate(routes.REGISTER)}
         />
       </Wrapper>
     </Container>
