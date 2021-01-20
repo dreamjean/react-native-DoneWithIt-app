@@ -1,3 +1,4 @@
+import Constants from "expo-constants";
 import { StyleSheet } from "react-native";
 import styled, { css } from "styled-components";
 
@@ -6,8 +7,8 @@ const containerStyle = css`
 
   ${({ light, theme: { colors, space } }) => ({
     backgroundColor: light ? colors.light : colors.white,
-    padding: space.m,
-    paddingBottom: 0,
+    paddingHorizontal: space.m,
+    paddingTop: Constants.statusBarHeight,
   })}
 `;
 

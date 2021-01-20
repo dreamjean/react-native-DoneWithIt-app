@@ -23,7 +23,7 @@ const Touchable = styled(RectButton)`
   bottom: 18px;
 
   ${({ theme: { colors, radii } }) => ({
-    backgroundColor: colors.white,
+    backgroundColor: colors.white2,
     borderRadius: radii.xl,
   })}
 `;

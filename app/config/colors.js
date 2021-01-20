@@ -3,6 +3,7 @@ export default {
   secondary: "#4ecdc4",
   black: "#000",
   white: "#fff",
+  white2: "#F5F5F5",
   medium: "#6e6969",
   light: "#f8f4f4",
   lightCyan: "#ebf9f8",
