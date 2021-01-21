@@ -4,7 +4,7 @@ const endpoint = "/listings";
 
 const getListings = () => client.get(endpoint);
 
-const addListings = (listing) => {
+const addListing = (listing) => {
   const data = new FormData();
   data.append("title", listing.title);
   data.append("price", listing.price);
@@ -15,7 +15,7 @@ const addListings = (listing) => {
     data.append("images", {
       name: "image" + index,
       type: "image/jpeg",
-      uri: image,
+      url: image,
     })
   );
 
@@ -26,6 +26,6 @@ const addListings = (listing) => {
 };
 
 export default {
+  addListing,
   getListings,
-  addListings,
 };

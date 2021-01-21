@@ -1,6 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 
+import listingsApi from "../api/listings";
 import { CategoryPickerItem } from "../components";
 import {
   Form,
@@ -11,18 +12,31 @@ import {
 } from "../components/forms";
 import { View } from "../components/styles";
 import categories from "../data/categories";
+import useLocation from "../hooks/useLocation";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
   price: Yup.number().required().min(1).max(10000).label("Price"),
   description: Yup.string().label("Description"),
-  category: Yup.object().required().nullable().label("Category"),
+  category: Yup.object()
+    .shape({ label: Yup.string(), value: Yup.number() })
+    .required()
+    .nullable()
+    .label("Category"),
   images: Yup.array().min(1, "Please select at least on image."),
 });
 
 const ListingEditScreen = ({ route }) => {
   const data = route?.params?.data;
   const inititalImages = data ? data : [];
+  const location = useLocation();
+
+  const handleSubmit = async (listing) => {
+    const result = await listingsApi.addListing({ ...listing, location });
+    if (!result.ok) return alert("Could not save the listing");
+
+    alert("Success");
+  };
 
   return (
     <View container>
@@ -34,7 +48,7 @@ const ListingEditScreen = ({ route }) => {
           category: null,
           images: inititalImages,
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <FormImagePicker name="images" data={data} />

@@ -78,7 +78,7 @@ const Picker = ({
                     setModalVisible(false);
                     onSelectItem(item);
                   }}
-                  selected={item === selectedItem}
+                  selected={selectedItem === item}
                 />
               )}
               numColumns={numberOfColumns}
