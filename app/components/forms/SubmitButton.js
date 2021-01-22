@@ -4,10 +4,10 @@ import React from "react";
 import Button from "../Button";
 
 const SubmitButton = ({ title }) => {
-  const { submitForm } = useFormikContext();
+  const { handleSubmit } = useFormikContext();
 
   return (
-    <Button title={title} marginVertical={15} primary onPress={submitForm} />
+    <Button title={title} marginVertical={15} primary onPress={handleSubmit} />
   );
 };
 

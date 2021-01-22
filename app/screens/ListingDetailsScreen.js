@@ -33,8 +33,8 @@ const ListingDetailsScreen = ({ navigation, route }) => {
             ${route?.params?.price}
           </Text>
         </TextBox>
-        <ListItem image={images[0]} title="Rokia" subTitle="5 listings" />
       </Wrapper>
+      <ListItem image={images[0]} title="Rokia" subTitle="5 listings" />
     </Container>
   );
 };

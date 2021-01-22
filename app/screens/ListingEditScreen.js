@@ -1,8 +1,9 @@
 import React from "react";
+import { useState } from "react";
 import * as Yup from "yup";
 
 import listingsApi from "../api/listings";
-import { CategoryPickerItem } from "../components";
+import { CategoryPickerItem, UploadModal } from "../components";
 import {
   Form,
   FormField,
@@ -18,28 +19,40 @@ const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
   price: Yup.number().required().min(1).max(10000).label("Price"),
   description: Yup.string().label("Description"),
-  category: Yup.object()
-    .shape({ label: Yup.string(), value: Yup.number() })
-    .required()
-    .nullable()
-    .label("Category"),
+  category: Yup.object().required().nullable().label("Category"),
   images: Yup.array().min(1, "Please select at least on image."),
 });
 
 const ListingEditScreen = ({ route }) => {
   const data = route?.params?.data;
   const inititalImages = data ? data : [];
+  const [uploadVisible, setUploadVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
   const location = useLocation();
 
-  const handleSubmit = async (listing) => {
-    const result = await listingsApi.addListing({ ...listing, location });
-    if (!result.ok) return alert("Could not save the listing");
+  const handleSubmit = async (listing, { resetForm }) => {
+    setProgress(0);
+    setUploadVisible(true);
+    const result = await listingsApi.addListing(
+      { ...listing, location },
+      (progress) => setProgress(progress)
+    );
 
-    alert("Success");
+    if (!result.ok) {
+      setUploadVisible(false);
+      return alert("Could not save the listing");
+    }
+
+    resetForm();
   };
 
   return (
     <View container>
+      <UploadModal
+        onDone={() => setUploadVisible(false)}
+        progress={progress}
+        visible={uploadVisible}
+      />
       <Form
         initialValues={{
           title: "",
