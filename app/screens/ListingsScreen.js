@@ -14,6 +14,7 @@ const newCategories = [newCategory, ...categories];
 
 const ListingsScreen = ({ navigation }) => {
   const [selectedCategory, setSelectedCategory] = useState(newCategory);
+
   const { data: listings, error, loading, request: loadingListings } = useApi(
     listingsApi.getListings
   );
