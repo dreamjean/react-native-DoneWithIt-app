@@ -1,17 +1,24 @@
 import React from "react";
 import { Pressable } from "react-native";
+import { Image } from "react-native-expo-image-cache";
 import styled from "styled-components";
 
-import { Image, Text } from "../styles";
+import { Text } from "../styles";
 
-const Card = ({ image, title, subTitle, onPress }) => {
+const Card = ({ image, title, subTitle, thumbnaiUrl, onPress }) => {
   return (
     <Pressable
       style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
       {...{ onPress }}
     >
       <Container>
-        <Image card source={{ uri: image }} />
+        <Picture
+          resizeMode="cover"
+          tint="light"
+          transitionDuration={300}
+          uri={image}
+          preview={{ uri: thumbnaiUrl }}
+        />
         <TextBox>
           <Text body2 numberOfLnes={1}>
             {title}
@@ -33,6 +40,11 @@ const Container = styled.View`
     borderRadius: radii.m,
     marginVertical: space.s2,
   })}
+`;
+
+const Picture = styled(Image)`
+  width: 100%;
+  height: 200px;
 `;
 
 const TextBox = styled.View`

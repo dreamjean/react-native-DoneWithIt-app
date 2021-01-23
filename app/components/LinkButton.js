@@ -9,7 +9,7 @@ const LinkButton = ({ title, label, onPress }) => {
       style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
       {...{ onPress }}
     >
-      <Text body1 opacity={0.45}>
+      <Text body1 center>
         {title} <Text secondary>{label}</Text>
       </Text>
     </Pressable>

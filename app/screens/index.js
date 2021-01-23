@@ -4,6 +4,7 @@ export { default as ListingsScreen } from "./ListingsScreen";
 export { default as LoginScreen } from "./LoginScreen";
 export { default as MediaSelectionScreen } from "./MediaSelectionScreen";
 export { default as MessagesScreen } from "./MessagesScreen";
+export { default as OfflineNotice } from "./OfflineNotice";
 export { default as ProfileScreen } from "./ProfileScreen";
 export { default as RegisterScreen } from "./RegisterScreen";
 export { default as WelcomeScreen } from "./WelcomeScreen";

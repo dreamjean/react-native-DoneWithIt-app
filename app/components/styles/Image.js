@@ -24,27 +24,15 @@ const logoStyle = css`
   })}
 `;
 
-const cardStyle = css`
-  width: 100%;
-  height: 200px;
-`;
-
 const mediaStyle = css`
   width: 100%;
   height: 100%;
-`;
-
-const ditailsStyle = css`
-  width: 100%;
-  height: 300px;
 `;
 
 const Image = styled.Image`
   ${({ avatar }) => avatar && avatarStyle}
   ${({ avatar2 }) => avatar2 && avatar2Style}
   ${({ logo }) => logo && logoStyle}
-  ${({ card }) => card && cardStyle}
-  ${({ ditails }) => ditails && ditailsStyle}
   ${({ media }) => media && mediaStyle}
 `;
 

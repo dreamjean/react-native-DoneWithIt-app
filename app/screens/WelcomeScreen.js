@@ -15,6 +15,7 @@ const WelcomeScreen = ({ navigation }) => {
         <Button
           primary
           title="Login"
+          marginVertical={5}
           onPress={() => navigation.navigate(routes.LOGIN)}
         />
         <Button

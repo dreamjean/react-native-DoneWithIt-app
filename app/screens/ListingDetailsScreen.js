@@ -1,17 +1,51 @@
 import { Ionicons } from "@expo/vector-icons";
-import React from "react";
+import React, { useState } from "react";
 import { Pressable } from "react-native";
+import { Image } from "react-native-expo-image-cache";
 import styled from "styled-components";
 
-import { ListItem } from "../components";
-import { Image, Text } from "../components/styles";
-import { colors, images } from "../config";
+import { ListItem, PaginationDot } from "../components";
+import { Text } from "../components/styles";
+import { calender, colors, images } from "../config";
+
+const { width } = calender;
 
 const ListingDetailsScreen = ({ navigation, route }) => {
+  const [position, setPosition] = useState(0);
+
+  const handleScroll = (e) => {
+    const scrollX = e.nativeEvent.contentOffset.x;
+    setPosition(Math.round(scrollX / width));
+  };
+
   return (
     <Container>
       <Wrapper>
-        <Image ditails source={{ uri: route?.params?.images[0].url }} />
+        <Pictures>
+          <ScrollView
+            horizontal
+            pagingEnabled={true}
+            showsHorizontalScrollIndicator={false}
+            onScroll={handleScroll}
+          >
+            {route?.params?.images.map((image, index) => (
+              <Picture
+                resizeMode="cover"
+                key={index}
+                tint="light"
+                transitionDuration={300}
+                uri={image.url}
+                preview={{ uri: image.thumbnaiUrl }}
+              />
+            ))}
+          </ScrollView>
+          <Dots>
+            {route?.params?.images.length > 1 &&
+              route?.params?.images.map((_, index) => (
+                <PaginationDot key={index} index={index} position={position} />
+              ))}
+          </Dots>
+        </Pictures>
         <Pressable
           style={({ pressed }) => ({
             position: "absolute",
@@ -41,6 +75,25 @@ const ListingDetailsScreen = ({ navigation, route }) => {
 
 const Container = styled.View`
   flex: 1;
+`;
+
+const ScrollView = styled.ScrollView``;
+
+const Pictures = styled.View`
+  width: ${width}px;
+  height: 350px;
+`;
+
+const Picture = styled(Image)`
+  width: ${width}px;
+  height: 350px;
+`;
+
+const Dots = styled.View`
+  flex-direction: row;
+  position: absolute;
+  bottom: 0;
+  align-self: center;
 `;
 
 const Wrapper = styled.View`

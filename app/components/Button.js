@@ -22,6 +22,8 @@ const Button = ({
 };
 
 const Container = styled(RectButton)`
+  width: 100%;
+
   ${({ padding, marginVertical, primary, theme: { colors, radii } }) => ({
     backgroundColor: primary ? colors.primary : colors.secondary,
     borderRadius: radii.l,

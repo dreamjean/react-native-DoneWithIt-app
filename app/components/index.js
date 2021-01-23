@@ -6,6 +6,7 @@ export { default as Card } from "./main/Card";
 export { default as Category } from "./main/Category";
 export { default as CategoryPickerItem } from "./main/CategoryPickerItem";
 export { default as ListItem } from "./main/ListItem";
+export { default as PaginationDot } from "./main/PaginationDot";
 export { default as SwipeableRow } from "./main/SwipeableRow";
 export { default as UploadModal } from "./main/UploadModal";
 export { default as Picker } from "./Picker";

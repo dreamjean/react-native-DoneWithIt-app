@@ -34,21 +34,6 @@ const ListingsScreen = ({ navigation }) => {
 
   return (
     <View container light>
-      {error && (
-        <>
-          <Text
-            body1
-            marginTop={20}
-            center
-          >{`Couldn't retrieve the listings.`}</Text>
-          <Button
-            title="Retry"
-            primary
-            marginVertical={8}
-            onPress={loadingListings}
-          />
-        </>
-      )}
       <CategoryBar>
         <Categories horizontal showsHorizontalScrollIndicator={false}>
           {newCategories.map((category) => (
@@ -61,6 +46,21 @@ const ListingsScreen = ({ navigation }) => {
           ))}
         </Categories>
       </CategoryBar>
+      {error && (
+        <>
+          <Text
+            body1
+            marginTop={10}
+            center
+          >{`Couldn't retrieve the listings.`}</Text>
+          <Button
+            title="Retry"
+            primary
+            marginVertical={8}
+            onPress={loadingListings}
+          />
+        </>
+      )}
       <ActivityIndicator visible={loading} />
       <FlatList
         data={fetchData()}
@@ -70,6 +70,7 @@ const ListingsScreen = ({ navigation }) => {
             title={item.title}
             subTitle={"$" + item.price}
             image={item.images[0].url}
+            thumbnaiUrl={item.images[0].thumbnailUrl}
             onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
           />
         )}

@@ -1,8 +1,16 @@
-import React from "react";
+import jwtDecode from "jwt-decode";
+import React, { useContext, useState } from "react";
 import * as Yup from "yup";
 
+import authApi from "../api/auth";
+import AuthContext from "../auth/context";
 import { LinkButton } from "../components";
-import { Form, FormField, SubmitButton } from "../components/forms";
+import {
+  ErrorMessage,
+  Form,
+  FormField,
+  SubmitButton,
+} from "../components/forms";
 import { Image, View } from "../components/styles";
 import { images } from "../config";
 import routes from "../navigation/routes";
@@ -13,19 +21,29 @@ let validationSchema = Yup.object().shape({
 });
 
 const LoginScreen = ({ navigation }) => {
+  const authContext = useContext(AuthContext);
+  const [loginFailed, setLoginFailed] = useState(false);
+
+  const handleSubmit = async ({ email, password }) => {
+    const result = await authApi.login(email, password);
+    if (!result.ok) return setLoginFailed(true);
+    setLoginFailed(false);
+    const user = jwtDecode(result.data);
+    authContext.setUser(user);
+  };
+
   return (
     <View container>
       <Image logo source={images[2]} />
       <Form
         initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
-        onSubmit={(values, actions) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
-          }, 1000);
-        }}
+        onSubmit={handleSubmit}
       >
+        <ErrorMessage
+          error="Invalid email and/or password"
+          visible={loginFailed}
+        />
         <FormField
           allowFontScaling={false}
           autoCapitalize="none"

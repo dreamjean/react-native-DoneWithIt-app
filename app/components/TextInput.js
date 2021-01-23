@@ -14,7 +14,7 @@ const TextInput = ({ touched, error, icon, width = "100%", ...rest }) => {
       <Input
         {...rest}
         placeholderTextColor={colors.grey}
-        selectionColor={error ? colors.danger : colors.secondary}
+        selectionColor={colors.secondary}
         underlineColorAndroid="transparent"
       />
     </Wrapper>
