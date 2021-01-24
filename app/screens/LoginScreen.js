@@ -4,6 +4,7 @@ import * as Yup from "yup";
 
 import authApi from "../api/auth";
 import AuthContext from "../auth/context";
+import authStorage from "../auth/storage";
 import { LinkButton } from "../components";
 import {
   ErrorMessage,
@@ -30,6 +31,7 @@ const LoginScreen = ({ navigation }) => {
     setLoginFailed(false);
     const user = jwtDecode(result.data);
     authContext.setUser(user);
+    authStorage.storeToken(result.data);
   };
 
   return (

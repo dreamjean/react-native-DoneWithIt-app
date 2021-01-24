@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 import AuthContext from "../auth/context";
+import authStorage from "../auth/storage";
 import { Icon, ListItem } from "../components";
 import { Image, View } from "../components/styles";
 import { colors, images } from "../config";
@@ -29,6 +30,11 @@ const menuItems = [
 
 const ProfileScreen = ({ navigation }) => {
   const { user, setUser } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    setUser(null);
+    authStorage.removeToken();
+  };
 
   return (
     <Container>
@@ -61,7 +67,7 @@ const ProfileScreen = ({ navigation }) => {
       <ListItem
         IconComponent={<Icon iconName="logout" bgColor={colors.yellow} />}
         title="Log Out"
-        onPress={() => setUser(null)}
+        onPress={handleLogOut}
       />
       <StatusBar style="dark" />
     </Container>
