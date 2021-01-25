@@ -1,9 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 
-import AuthContext from "../auth/context";
-import authStorage from "../auth/storage";
+import useAuth from "../auth/useAuth";
 import { Icon, ListItem } from "../components";
 import { Image, View } from "../components/styles";
 import { colors, images } from "../config";
@@ -29,12 +28,7 @@ const menuItems = [
 ];
 
 const ProfileScreen = ({ navigation }) => {
-  const { user, setUser } = useContext(AuthContext);
-
-  const handleLogOut = () => {
-    setUser(null);
-    authStorage.removeToken();
-  };
+  const { user, logOut } = useAuth();
 
   return (
     <Container>
@@ -67,7 +61,7 @@ const ProfileScreen = ({ navigation }) => {
       <ListItem
         IconComponent={<Icon iconName="logout" bgColor={colors.yellow} />}
         title="Log Out"
-        onPress={handleLogOut}
+        onPress={() => logOut()}
       />
       <StatusBar style="dark" />
     </Container>

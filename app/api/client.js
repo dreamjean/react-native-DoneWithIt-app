@@ -3,7 +3,7 @@ import { create } from "apisauce";
 import cache from "../utility/cache";
 
 const apiClient = create({
-  baseURL: "http://75078bb6ce5d.ngrok.io/api",
+  baseURL: "http://4cca044b0b02.ngrok.io/api",
 });
 
 const get = apiClient.get;

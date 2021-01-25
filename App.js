@@ -1,6 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
 import AppLoading from "expo-app-loading";
-import jwtDecode from "jwt-decode";
 import React, { useEffect, useState } from "react";
 
 import AuthContext from "./app/auth/context";
@@ -14,15 +13,13 @@ const App = () => {
   const { assetsLoaded, setAssetsLoaded, loadAssetsAsync } = useLoadAssets();
   const [user, setUser] = useState();
 
-  const restoreToken = async () => {
-    const token = await authStorage.getToken();
-    if (!token) return;
-
-    setUser(jwtDecode(token));
+  const restoreUser = async () => {
+    const user = await authStorage.getUser();
+    if (user) setUser(user);
   };
 
   useEffect(() => {
-    restoreToken();
+    restoreUser();
   }, []);
 
   if (!assetsLoaded) {
