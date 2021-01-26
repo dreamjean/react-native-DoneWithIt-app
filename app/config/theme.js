@@ -4,6 +4,7 @@ import calender from "./calender";
 import colors from "./colors";
 
 export const isIos = Platform.OS === "ios";
+export const isAndroid = Platform.OS === "android";
 
 const getFont = (n) => (isIos ? fonts.ios[n] : fonts.android[n]);
 

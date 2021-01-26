@@ -1,9 +1,11 @@
 import { createStackNavigator } from "@react-navigation/stack";
+import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import * as Permissions from "expo-permissions";
 import React, { useEffect } from "react";
 
-import expoPushTokens from "../api/expoPushTokens";
+import expoPushTokensApi from "../api/expoPushTokens";
+import { isAndroid } from "../config";
 import { ListingDetailsScreen } from "../screens";
 import MainNavigator from "./MainNavigator";
 
@@ -15,14 +17,29 @@ const AppNavigator = () => {
   }, []);
 
   const registerForPushNotifications = async () => {
-    try {
-      const permissions = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-      if (!permissions.granted) return;
+    if (Constants.isDevice) {
+      try {
+        const { granted } = await Permissions.getAsync(
+          Permissions.NOTIFICATIONS
+        );
+        if (!granted) return;
 
-      const token = await Notifications.getExpoPushTokenAsync();
-      await expoPushTokens.register(token);
-    } catch (error) {
-      console.log("Error getting a push token", error);
+        const { data } = await Notifications.getExpoPushTokenAsync();
+        expoPushTokensApi.register(data);
+      } catch (error) {
+        console.log("Failed to get push token for push notification!", error);
+      }
+    } else {
+      alert("Must use physical device for Push Notifications");
+    }
+
+    if (isAndroid) {
+      Notifications.setNotificationChannelAsync("default", {
+        name: "default",
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: "#FF231F7C",
+      });
     }
   };
 
