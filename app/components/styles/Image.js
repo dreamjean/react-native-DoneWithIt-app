@@ -17,9 +17,9 @@ const logoStyle = css`
   height: 100px;
   align-self: center;
 
-  ${({ theme: { space } }) => ({
+  ${({ height, theme: { space } }) => ({
     resizeMode: "contain",
-    marginTop: space.xxl,
+    marginTop: height ? space.xxl : space.l2,
     marginBottom: space.l,
   })}
 `;

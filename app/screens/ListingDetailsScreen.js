@@ -26,6 +26,7 @@ const ListingDetailsScreen = ({ navigation, route }) => {
             horizontal
             pagingEnabled={true}
             showsHorizontalScrollIndicator={false}
+            scrollEventThrottle={16}
             onScroll={handleScroll}
           >
             {route?.params?.images.map((image, index) => (

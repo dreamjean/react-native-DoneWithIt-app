@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import styled from "styled-components";
 
@@ -9,7 +10,7 @@ import routes from "../navigation/routes";
 const WelcomeScreen = ({ navigation }) => {
   return (
     <Container blurRadius={5} source={images[1]}>
-      <Image logo source={images[2]} />
+      <Image logo height source={images[2]} />
       <Text title2>{`Sell What You Don't Need`}</Text>
       <Wrapper>
         <Button
@@ -24,6 +25,7 @@ const WelcomeScreen = ({ navigation }) => {
           onPress={() => navigation.navigate(routes.REGISTER)}
         />
       </Wrapper>
+      <StatusBar style="dark" />
     </Container>
   );
 };

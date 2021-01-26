@@ -12,6 +12,7 @@ import { OfflineNotice } from "./app/screens";
 const App = () => {
   const { assetsLoaded, setAssetsLoaded, loadAssetsAsync } = useLoadAssets();
   const [user, setUser] = useState();
+  const [isReady, setIsReady] = useState(false);
 
   const restoreUser = async () => {
     const user = await authStorage.getUser();
@@ -20,13 +21,16 @@ const App = () => {
 
   useEffect(() => {
     restoreUser();
-  }, []);
+  }, [isReady]);
 
-  if (!assetsLoaded) {
+  if (!assetsLoaded || !isReady) {
     return (
       <AppLoading
         startAsync={loadAssetsAsync}
-        onFinish={() => setAssetsLoaded(true)}
+        onFinish={() => {
+          setAssetsLoaded(true);
+          setIsReady(true);
+        }}
         onError={console.warn}
       />
     );

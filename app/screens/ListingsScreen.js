@@ -34,6 +34,7 @@ const ListingsScreen = ({ navigation }) => {
 
   return (
     <View container light>
+      <ActivityIndicator visible={loading} />
       <CategoryBar>
         <Categories horizontal showsHorizontalScrollIndicator={false}>
           {newCategories.map((category) => (
@@ -61,7 +62,7 @@ const ListingsScreen = ({ navigation }) => {
           />
         </>
       )}
-      <ActivityIndicator visible={loading} />
+
       <FlatList
         data={fetchData()}
         keyExtractor={(listing) => listing.id.toString()}
