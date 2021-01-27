@@ -1,3 +1,6 @@
+import { navigationRef } from "./rootNavigation";
+
+export { navigationRef };
 export { default as AppNavigator } from "./AppNavigator";
 export { default as AuthNavigator } from "./AuthNavigator";
 export { default as navigationTheme } from "./navigationTheme";

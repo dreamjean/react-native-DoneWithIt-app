@@ -2,8 +2,8 @@ export const images = [
   require("../assets/images/avatar.jpeg"),
   require("../assets/images/background.jpg"),
   require("../assets/images/logo-red.png"),
-  require("../assets/images/couch.jpg"),
-  require("../assets/images/jacket.jpg"),
+  require("../assets/icon.png"),
+  require("../assets/splash.png"),
 ];
 
 export const fonts = {

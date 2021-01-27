@@ -5,7 +5,7 @@ import { ListingsScreen, MessagesScreen, ProfileScreen } from "../screens";
 
 const Stack = createStackNavigator();
 
-const AcountNavigator = () => (
+const AccountNavigator = () => (
   <Stack.Navigator>
     <Stack.Screen
       name="Profile"
@@ -28,4 +28,4 @@ const AcountNavigator = () => (
   </Stack.Navigator>
 );
 
-export default AcountNavigator;
+export default AccountNavigator;

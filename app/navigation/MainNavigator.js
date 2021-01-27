@@ -4,7 +4,7 @@ import React from "react";
 
 import { theme } from "../config";
 import { ListingsScreen } from "../screens";
-import AcountNavigator from "./AcountNavigator";
+import AccountNavigator from "./AccountNavigator";
 import FormNavigator from "./FormNavigator";
 import NewButton from "./NewButton";
 
@@ -49,7 +49,7 @@ const MainNavigator = () => (
     />
     <Tab.Screen
       name="Acount"
-      component={AcountNavigator}
+      component={AccountNavigator}
       options={{
         tabBarIcon: ({ color, size }) => (
           <Ionicons

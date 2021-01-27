@@ -2,15 +2,18 @@ import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Pressable } from "react-native";
 import { Image } from "react-native-expo-image-cache";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styled from "styled-components";
 
-import { ListItem, PaginationDot } from "../components";
+import { ContactSellerForm, ListItem, PaginationDot } from "../components";
 import { Text } from "../components/styles";
-import { calender, colors, images } from "../config";
+import { calender, colors, images, isIos } from "../config";
 
 const { width } = calender;
 
 const ListingDetailsScreen = ({ navigation, route }) => {
+  const listing = route?.params;
+
   const [position, setPosition] = useState(0);
 
   const handleScroll = (e) => {
@@ -19,62 +22,86 @@ const ListingDetailsScreen = ({ navigation, route }) => {
   };
 
   return (
-    <Container>
-      <Wrapper>
-        <Pictures>
-          <ScrollView
-            horizontal
-            pagingEnabled={true}
-            showsHorizontalScrollIndicator={false}
-            scrollEventThrottle={16}
-            onScroll={handleScroll}
-          >
-            {route?.params?.images.map((image, index) => (
-              <Picture
-                resizeMode="cover"
-                key={index}
-                tint="light"
-                transitionDuration={300}
-                uri={image.url}
-                preview={{ uri: image.thumbnaiUrl }}
-              />
-            ))}
-          </ScrollView>
-          <Dots>
-            {route?.params?.images.length > 1 &&
-              route?.params?.images.map((_, index) => (
-                <PaginationDot key={index} index={index} position={position} />
+    <KeyboardAwareScrollView
+      contentContainerStyle={{ flexGrow: 1 }}
+      extraScrollHeight={60}
+      enableOnAndroid
+      enableAutoAutomaticScrol={isIos}
+      keyboardShouldPersistTaps="always"
+      showsVerticalScrollIndicator={false}
+    >
+      <Container showsVerticalScrollIndicator={false}>
+        <Wrapper>
+          <Pictures>
+            <ScrollView
+              horizontal
+              pagingEnabled={true}
+              showsHorizontalScrollIndicator={false}
+              scrollEventThrottle={16}
+              onScroll={handleScroll}
+            >
+              {listing.images.map((image, index) => (
+                <Picture
+                  resizeMode="cover"
+                  key={index}
+                  tint="light"
+                  transitionDuration={300}
+                  uri={image.url}
+                  preview={{ uri: image.thumbnaiUrl }}
+                />
               ))}
-          </Dots>
-        </Pictures>
-        <Pressable
-          style={({ pressed }) => ({
-            position: "absolute",
-            top: 26,
-            left: 18,
-            opacity: pressed ? 0.5 : 1,
-          })}
-          onPress={() => navigation.goBack()}
-        >
-          <Ionicons
-            name="arrow-back-circle-outline"
-            size={40}
-            color={colors.grey}
-          />
-        </Pressable>
-        <TextBox>
-          <Text title1>{route?.params?.title}</Text>
-          <Text body2 secondary marginTop={6}>
-            ${route?.params?.price}
+            </ScrollView>
+            <Dots>
+              {listing.images.length > 1 &&
+                listing.images.map((_, index) => (
+                  <PaginationDot
+                    key={index}
+                    index={index}
+                    position={position}
+                  />
+                ))}
+            </Dots>
+          </Pictures>
+          <Pressable
+            style={({ pressed }) => ({
+              position: "absolute",
+              top: 26,
+              left: 18,
+              opacity: pressed ? 0.5 : 1,
+            })}
+            onPress={() => navigation.goBack()}
+          >
+            <Ionicons
+              name="arrow-back-circle-outline"
+              size={40}
+              color={colors.grey}
+            />
+          </Pressable>
+          <TitleBox>
+            <Text title1>{listing.title}</Text>
+            <Text body2 secondary marginTop={6}>
+              ${listing.price}
+            </Text>
+          </TitleBox>
+        </Wrapper>
+        <DescriptionBox>
+          <Text body1 opacity={0.75} secondary>
+            Product Details
           </Text>
-        </TextBox>
-      </Wrapper>
-      <ListItem image={images[0]} title="Rokia" subTitle="5 listings" />
-    </Container>
+          {listing.description ? (
+            <Description body1>{listing.description}</Description>
+          ) : (
+            <Description body1>There is nothing here =_=</Description>
+          )}
+        </DescriptionBox>
+        <ListItem image={images[0]} title="Rokia" subTitle="5 listings" />
+        <ContactSellerForm listing={listing} />
+      </Container>
+    </KeyboardAwareScrollView>
   );
 };
 
-const Container = styled.View`
+const Container = styled.ScrollView`
   flex: 1;
 `;
 
@@ -103,9 +130,28 @@ const Wrapper = styled.View`
   })}
 `;
 
-const TextBox = styled.View`
+const TitleBox = styled.View`
   ${({ theme: { space } }) => ({
     padding: space.m,
+  })}
+`;
+
+const DescriptionBox = styled.View`
+  ${({ theme: { colors, space } }) => ({
+    backgroundColor: colors.lightCyan,
+    padding: space.m,
+    marginVertical: space.s2,
+  })}
+`;
+
+const Description = styled(Text)`
+  line-height: 18px;
+
+  ${({ theme: { colors, size, space } }) => ({
+    fontSize: size.s,
+    color: colors.medium,
+    margin: space.s2,
+    opacity: 0.65,
   })}
 `;
 
