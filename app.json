@@ -34,18 +34,20 @@
       "iosDisplayInForeground": true
     },
     "extra": {
-			"bugsnag": {
-				"apiKey": "39c295f6bd322b7eb90c1d7b64e18ce5"
-			}
-		},
-		"hooks": {
-			"postPublish": [
-				{
-					"file": "@bugsnag/expo/hooks/post-publish.js",
-					"config": {}
-				}
-			]
-		}
+      "bugsnag": {
+        "apiKey": "39c295f6bd322b7eb90c1d7b64e18ce5"
+      }
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "@bugsnag/expo/hooks/post-publish.js",
+          "config": {}
+        }
+      ]
+    },
+    "description": "A marketplace to sell the stuff you don't use anymore.",
+    "githubUrl": "https://github.com/dreamjean/react-native-done-with-it"
   },
   "experiments": {
     "turboModules": true
