@@ -1,10 +1,11 @@
 import { create } from "apisauce";
 
 import authStorage from "../auth/storage";
+import settings from "../config/settings";
 import cache from "../utility/cache";
 
 const apiClient = create({
-  baseURL: "http://80a10e0350c1.ngrok.io/api",
+  baseURL: settings.apiUrl,
 });
 
 apiClient.addAsyncRequestTransform(async (request) => {

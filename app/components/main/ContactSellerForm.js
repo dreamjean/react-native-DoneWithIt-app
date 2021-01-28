@@ -1,4 +1,4 @@
-import * as Notifications from "expo-notifications";
+// import * as Notifications from "expo-notifications";
 import React from "react";
 import { Alert, Keyboard } from "react-native";
 import styled from "styled-components";
@@ -24,10 +24,10 @@ const ContactSellerForm = ({ listing }) => {
 
     resetForm();
 
-    Notifications.presentNotificationAsync({
-      title: "Awesome!",
-      body: "Your message was sent to the seller.",
-    });
+    // Notifications.presentNotificationAsync({
+    //   title: "Awesome!",
+    //   body: "Your message was sent to the seller.",
+    // });
   };
 
   return (

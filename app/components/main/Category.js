@@ -20,10 +20,11 @@ const Touchable = styled(RectButton)`
 
   ${({ selected, theme: { colors, space, radii } }) => ({
     backgroundColor: selected ? colors.primary : colors.lightCyan2,
-    padding: space.m,
+    paddingVertical: space.s3,
+    paddingHorizontal: space.m,
     marginRight: space.s2,
     marginVertical: space.s2,
-    borderRadius: radii.l,
+    borderRadius: radii.m2,
   })}
 `;
 

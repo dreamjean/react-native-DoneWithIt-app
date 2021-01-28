@@ -13,6 +13,9 @@ import {
   navigationTheme,
 } from "./app/navigation";
 import { OfflineNotice } from "./app/screens";
+// import logger from "./app/utility/logger";
+
+// logger.start();
 
 const App = () => {
   const { assetsLoaded, setAssetsLoaded, loadAssetsAsync } = useLoadAssets();

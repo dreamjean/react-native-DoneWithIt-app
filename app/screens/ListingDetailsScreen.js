@@ -1,11 +1,15 @@
-import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Pressable } from "react-native";
 import { Image } from "react-native-expo-image-cache";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styled from "styled-components";
 
-import { ContactSellerForm, ListItem, PaginationDot } from "../components";
+import {
+  ContactSellerForm,
+  Icon,
+  ListItem,
+  PaginationDot,
+} from "../components";
 import { Text } from "../components/styles";
 import { calender, colors, images, isIos } from "../config";
 
@@ -71,11 +75,7 @@ const ListingDetailsScreen = ({ navigation, route }) => {
             })}
             onPress={() => navigation.goBack()}
           >
-            <Ionicons
-              name="arrow-back-circle-outline"
-              size={40}
-              color={colors.grey}
-            />
+            <Icon iconName="close" size={36} bgColor={colors.grey} />
           </Pressable>
           <TitleBox>
             <Text title1>{listing.title}</Text>
@@ -91,7 +91,9 @@ const ListingDetailsScreen = ({ navigation, route }) => {
           {listing.description ? (
             <Description body1>{listing.description}</Description>
           ) : (
-            <Description body1>There is nothing here =_=</Description>
+            <Description body1 opacity={0.65}>
+              There is nothing here =_=
+            </Description>
           )}
         </DescriptionBox>
         <ListItem image={images[0]} title="Rokia" subTitle="5 listings" />

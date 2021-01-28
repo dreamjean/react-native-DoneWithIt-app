@@ -1,5 +1,8 @@
 module.exports = {
   root: true,
+  globals: {
+    __DEV__: false,
+  },
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: "module",

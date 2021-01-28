@@ -18,6 +18,7 @@ import { Image, View } from "../components/styles";
 import { images, isIos } from "../config";
 import useApi from "../hooks/useApi";
 import routes from "../navigation/routes";
+import logger from "../utility/logger";
 
 let validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
@@ -39,9 +40,8 @@ const RegisterScreen = ({ navigation }) => {
       if (result.data) setError(result.data.error);
       else {
         setError("An unexpected error occurred.");
-        console.log(result);
+        logger.log(result);
       }
-      console.log(result);
       return;
     }
 

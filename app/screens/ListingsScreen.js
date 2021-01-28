@@ -84,7 +84,12 @@ const ListingsScreen = ({ navigation }) => {
 
 const Categories = styled.ScrollView``;
 
-const CategoryBar = styled.View``;
+const CategoryBar = styled.View`
+  ${({ theme: { space } }) => ({
+    paddingTop: space.s3,
+    paddingBottom: space.s1,
+  })}
+`;
 
 const FlatList = styled.FlatList``;
 

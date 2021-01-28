@@ -32,7 +32,20 @@
     },
     "notification": {
       "iosDisplayInForeground": true
-    }
+    },
+    "extra": {
+			"bugsnag": {
+				"apiKey": "39c295f6bd322b7eb90c1d7b64e18ce5"
+			}
+		},
+		"hooks": {
+			"postPublish": [
+				{
+					"file": "@bugsnag/expo/hooks/post-publish.js",
+					"config": {}
+				}
+			]
+		}
   },
   "experiments": {
     "turboModules": true
