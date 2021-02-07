@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import * as Yup from "yup";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import listingsApi from "../api/listings";
 import { CategoryPickerItem, UploadModal } from "../components";
@@ -47,50 +48,59 @@ const ListingEditScreen = ({ route }) => {
   };
 
   return (
-    <View container>
-      <UploadModal
-        onDone={() => setUploadVisible(false)}
-        progress={progress}
-        visible={uploadVisible}
-      />
-      <Form
-        initialValues={{
-          title: "",
-          price: "",
-          description: "",
-          category: null,
-          images: inititalImages,
-        }}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchema}
-      >
-        <FormImagePicker name="images" data={data} />
-        <FormField maxLength={255} name="title" placeholder="Title" />
-        <FormField
-          keyboardType="numeric"
-          maxLength={8}
-          name="price"
-          placeholder="Price"
-          width={120}
+    <KeyboardAwareScrollView
+      contentContainerStyle={{ flexGrow: 1 }}
+      extraScrollHeight={100}
+      enableOnAndroid
+      enableAutomaticScroll
+      keyboardShouldPersistTaps="always"
+      showsVerticalScrollIndicator={false}
+    >
+      <View container>
+        <UploadModal
+          onDone={() => setUploadVisible(false)}
+          progress={progress}
+          visible={uploadVisible}
         />
-        <FormPicker
-          items={categories}
-          name="category"
-          numberOfColumns={3}
-          placeholder="Category"
-          PickerItemComponent={CategoryPickerItem}
-          width="50%"
-        />
-        <FormField
-          maxLength={255}
-          multiline
-          name="description"
-          numberOfLine={3}
-          placeholder="Description"
-        />
-        <SubmitButton title="Post" />
-      </Form>
-    </View>
+        <Form
+          initialValues={{
+            title: "",
+            price: "",
+            description: "",
+            category: null,
+            images: inititalImages,
+          }}
+          onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+        >
+          <FormImagePicker name="images" data={data} />
+          <FormField maxLength={255} name="title" placeholder="Title" />
+          <FormField
+            keyboardType="numeric"
+            maxLength={8}
+            name="price"
+            placeholder="Price"
+            width={120}
+          />
+          <FormPicker
+            items={categories}
+            name="category"
+            numberOfColumns={3}
+            placeholder="Category"
+            PickerItemComponent={CategoryPickerItem}
+            width="50%"
+          />
+          <FormField
+            maxLength={255}
+            multiline
+            name="description"
+            numberOfLine={3}
+            placeholder="Description"
+          />
+          <SubmitButton title="Post" />
+        </Form>
+      </View>
+    </KeyboardAwareScrollView>
   );
 };
 

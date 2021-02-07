@@ -11,7 +11,7 @@ import {
   PaginationDot,
 } from "../components";
 import { Text } from "../components/styles";
-import { calender, colors, images, isIos } from "../config";
+import { calender, colors, images } from "../config";
 
 const { width } = calender;
 
@@ -30,7 +30,7 @@ const ListingDetailsScreen = ({ navigation, route }) => {
       contentContainerStyle={{ flexGrow: 1 }}
       extraScrollHeight={60}
       enableOnAndroid
-      enableAutoAutomaticScrol={isIos}
+      enableAutomaticScroll
       keyboardShouldPersistTaps="always"
       showsVerticalScrollIndicator={false}
     >

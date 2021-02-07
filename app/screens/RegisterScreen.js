@@ -15,7 +15,7 @@ import {
   SubmitButton,
 } from "../components/forms";
 import { Image, View } from "../components/styles";
-import { images, isIos } from "../config";
+import { images } from "../config";
 import useApi from "../hooks/useApi";
 import routes from "../navigation/routes";
 import logger from "../utility/logger";
@@ -57,7 +57,7 @@ const RegisterScreen = ({ navigation }) => {
       contentContainerStyle={{ flexGrow: 1 }}
       extraScrollHeight={100}
       enableOnAndroid
-      enableAutoAutomaticScrol={isIos}
+      enableAutomaticScroll
       keyboardShouldPersistTaps="always"
       showsVerticalScrollIndicator={false}
     >
